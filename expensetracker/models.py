@@ -17,3 +17,23 @@ class Expense(models.Model):
 
     def __str__(self):
         return f"{self.name} - {self.category} - {self.user.username}"
+
+class Transaction(models.Model):
+
+    TRANSACTION_TYPES = [
+        ('INCOME', 'Income'),
+        ('EXPENSE', 'Expense'),
+    ]
+
+
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name="transactions")
+    income_source = models.ForeignKey(IncomeSource, on_delete=models.SET_NULL, null=True, blank=True)
+    expenses = models.ForeignKey(Expense, on_delete=models.SET_NULL, null=True, blank=True)
+    amount = models.DecimalField(max_digits=10, decimal_places=2, validators = [MinValueValidator(0.01)])
+    transaction_date = models.DateField()
+    description = models.TextField(blank=True)
+
+    type = models.CharField(max_length=7, choices=TRANSACTION_TYPES)
+
+    def __str__(self):
+        return f"{self.type} - {self.amount} - {self.user.username}"
