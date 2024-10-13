@@ -37,3 +37,14 @@ class Transaction(models.Model):
 
     def __str__(self):
         return f"{self.type} - {self.amount} - {self.user.username}"
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        self.update_user_balance()
+
+    def update_user_balance(self):
+        if self.type == 'INCOME':
+            self.user.current_balance += self.amount
+        else:
+            self.user.current_balance -= self.amount
+        self.user.save()
