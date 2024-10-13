@@ -40,3 +40,20 @@ class ExpenseDetailView(generics.RetrieveUpdateDestroyAPIView):
 
     def get_queryset(self):
         return Expense.objects.filter(user=self.request.user)
+
+class TransactionListCreateView(generics.ListCreateAPIView):
+    serializer_class = TransactionSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        return Transaction.objects.filter(user=self.request.user)
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+
+class TransactionDetailView(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = TransactionSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        return Transaction.objects.filter(user=self.request.user)
