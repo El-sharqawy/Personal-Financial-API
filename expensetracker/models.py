@@ -36,7 +36,9 @@ class Transaction(models.Model):
     type = models.CharField(max_length=7, choices=TRANSACTION_TYPES)
 
     def __str__(self):
-        return f"{self.type} - {self.amount} - {self.user.username}"
+        # Format amount to two decimal places
+        formatted_amount = f"{self.amount:.2f}"
+        return f"{self.type} - {formatted_amount} - {self.user.username}"
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
