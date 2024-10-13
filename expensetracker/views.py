@@ -57,3 +57,27 @@ class TransactionDetailView(generics.RetrieveUpdateDestroyAPIView):
 
     def get_queryset(self):
         return Transaction.objects.filter(user=self.request.user)
+
+class TransactionSummaryView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        start_date = request.query_params.get("start_date")
+        end_date = request.query_params.get("end_date")
+
+
+        transactions = Transaction.objects.filter(user=request.user)
+        if start_date:
+            transactions = transactions.filter(transaction_date__gte=start_date)
+
+        if end_date:
+            transactions = transactions.filter(transaction_date__gte=end_date)
+
+        income = transactions.filter(type="INCOME").aggregate(Sum("amount"))["amount__sum"] or 0
+        expenses = transactions.filter(type="EXPENSE").aggregate(Sum("amount"))["amount__sum"] or 0
+
+        return Response({
+                    'total_income': income,
+                    'total_expenses': expenses,
+                    'net': income - expenses
+                })
