@@ -21,4 +21,10 @@ class UserBalanceView(APIView):
     queryset = CustomUser.objects.all()
 
     def get(self, request):
-        return Response({"balance": request.user.current_balance})
+        try:
+            username = request.user.username
+            balance = request.user.current_balance
+        except:
+           username = "No User Selected, Please Login"
+           balance = 0
+        return Response({"username": username,"balance": balance})

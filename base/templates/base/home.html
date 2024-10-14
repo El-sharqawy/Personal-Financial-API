@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Financial API - Personal Finance Manager</title>
+
+    <!-- Load static files -->
+    {% load static %}
+
+    <link rel="stylesheet" href="{% static 'base/css/styles.css' %}">
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <header>
+        <nav>
+            <div class="logo">
+                <h1>Financial API</h1>
+            </div>
+            <ul>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="users/register/">Register</a></li>
+                <li><a href="users/api-auth/login/">Login</a></li>
+                <li><a href="swagger">Track</a></li>
+                <li><a href="admin">Administration</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h2>Manage Your Finances Efficiently</h2>
+            <p>Your ultimate tool for financial insights, budget tracking, and personalized reports.</p>
+            <a href="swagger" class="cta-button">Get Started</a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features">
+        <div class="container">
+            <h3>Key Features</h3>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <h4>Income Tracking</h4>
+                    <p>Track your earnings and get detailed reports on your income over time.</p>
+                </div>
+                <div class="feature-item">
+                    <h4>Spending Analysis</h4>
+                    <p>Monitor your expenses and categorize them to gain better financial control.</p>
+                </div>
+                <div class="feature-item">
+                    <h4>Custom Reports</h4>
+                    <p>Generate custom financial reports to get insights tailored to your needs.</p>
+                </div>
+                <div class="feature-item">
+                    <h4>API Access</h4>
+                    <p>Access your financial data programmatically via our powerful API.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works">
+        <div class="container">
+            <h3>How It Works</h3>
+            <p>Our Financial API provides seamless integration with your personal finance management system. You can easily connect, manage, and analyze your financial data through secure endpoints.</p>
+            <ol>
+                <li>Sign up and create your account</li>
+                <li>Connect your financial data sources</li>
+                <li>Use our API to get reports, track income, and more</li>
+            </ol>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <h3>Contact Us</h3>
+            <p>Have questions? Reach out to us!</p>
+            <form action="#" method="POST">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <textarea name="message" placeholder="Your Message" required></textarea>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Financial API. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'users',
     'expensetracker',
     'drf_yasg',
+    'base',
 ]
 
 MIDDLEWARE = [
@@ -128,3 +129,14 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Fixing MakeMigrations Errors
 AUTH_USER_MODEL = 'users.CustomUser'
+
+# Define the URL for static files (CSS, JS, images, etc.)
+STATIC_URL = '/static/'
+
+# (Optional) Define where to collect static files
+STATICFILES_DIRS = [
+    BASE_DIR / "static",  # BASE_DIR is usually defined at the top of settings.py
+]
+
+LOGIN_URL = '/users/api-auth/login/'  # Replace this with the URL of your custom login page
+LOGIN_REDIRECT_URL  = '/swagger'  # Replace this with the URL of your custom login page
